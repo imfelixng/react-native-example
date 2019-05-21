@@ -145,6 +145,7 @@ dependencies {
     // Firebase
     implementation "com.google.android.gms:play-services-base:16.1.0"
     implementation "com.google.firebase:firebase-core:16.0.8"
+    implementation "com.google.firebase:firebase-ads:15.0.1"
 }
 
 // Run this once to be able to run the application with BUCK
