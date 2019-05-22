@@ -3,6 +3,7 @@ package com.admodexample;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.sbugert.rnadmob.RNAdMobPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
 import com.facebook.react.ReactNativeHost;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNAdMobPackage(),
           new RNFirebasePackage(),
           new RNFirebaseAdMobPackage() 
       );
@@ -45,7 +47,7 @@ public class MainApplication extends Application implements ReactApplication {
   @Override
   public void onCreate() {
     super.onCreate();
-    MobileAds.initialize(this, "ca-app-pub-6590896323514966~2684981973");
+    MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
     SoLoader.init(this, /* native exopackage */ false);
   }
 }

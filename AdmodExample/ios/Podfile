@@ -10,6 +10,8 @@ target 'AdmodExample' do
   # Required by RNFirebase
   pod 'Firebase/Core', '~> 5.20.1'
   pod 'Firebase/AdMob', '~> 5.20.1'
+
+  pod 'Google-Mobile-Ads-SDK'
   
   target 'AdmodExampleTests' do
     inherit! :search_paths

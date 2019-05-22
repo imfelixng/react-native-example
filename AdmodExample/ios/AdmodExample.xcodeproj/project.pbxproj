@@ -5,7 +5,6 @@
 	};
 	objectVersion = 46;
 	objects = {
-
 /* Begin PBXBuildFile section */
 		00C302E51ABCBA2D00DB3ED1 /* libRCTActionSheet.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302AC1ABCB8CE00DB3ED1 /* libRCTActionSheet.a */; };
 		00C302E71ABCBA2D00DB3ED1 /* libRCTGeolocation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 00C302BA1ABCB90400DB3ED1 /* libRCTGeolocation.a */; };
@@ -46,6 +45,7 @@
 		ED297163215061F000B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED297162215061F000B7C4FE /* JavaScriptCore.framework */; };
 		ED2971652150620600B7C4FE /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ED2971642150620600B7C4FE /* JavaScriptCore.framework */; };
 		F10BD01C83F8307A2D79F9F1 /* libPods-AdmodExampleTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FD5A510A73021529BB903885 /* libPods-AdmodExampleTests.a */; };
+		1277AE81872340BFB675C4F4 /* libRNAdMobManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1BE784FE567F48319AE68802 /* libRNAdMobManager.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -375,6 +375,8 @@
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		F58A54B0634F9A00F11CC927 /* Pods-AdmodExample-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AdmodExample-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-AdmodExample-tvOSTests/Pods-AdmodExample-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		FD5A510A73021529BB903885 /* libPods-AdmodExampleTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AdmodExampleTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		69FB8CF07EC44BA487D2F8C4 /* RNAdMobManager.xcodeproj */ = {isa = PBXFileReference; name = "RNAdMobManager.xcodeproj"; path = "../node_modules/react-native-admob/ios/RNAdMobManager.xcodeproj"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = wrapper.pb-project; explicitFileType = undefined; includeInIndex = 0; };
+		1BE784FE567F48319AE68802 /* libRNAdMobManager.a */ = {isa = PBXFileReference; name = "libRNAdMobManager.a"; path = "libRNAdMobManager.a"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = archive.ar; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -406,6 +408,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				179752BC618DE7AFE7913F60 /* libPods-AdmodExample.a in Frameworks */,
 				385031A6418D49EC988AFD16 /* libRNFirebase.a in Frameworks */,
+				1277AE81872340BFB675C4F4 /* libRNAdMobManager.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -634,6 +637,7 @@
 				00C302DF1ABCB9EE00DB3ED1 /* RCTVibration.xcodeproj */,
 				139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */,
 				D5C8F6B0D801410CBC505243 /* RNFirebase.xcodeproj */,
+				69FB8CF07EC44BA487D2F8C4 /* RNAdMobManager.xcodeproj */,
 			);
 			name = Libraries;
 			sourceTree = "<group>";
@@ -1363,12 +1367,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = AdmodExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1390,12 +1396,14 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = AdmodExampleTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1419,6 +1427,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = AdmodExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1443,6 +1452,7 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = AdmodExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1473,11 +1483,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = "AdmodExample-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1508,11 +1520,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = "AdmodExample-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1542,11 +1556,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = "AdmodExample-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
@@ -1576,11 +1592,13 @@
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
+					"$(SRCROOT)/../node_modules/react-native-admob/ios",
 				);
 				INFOPLIST_FILE = "AdmodExample-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
+					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 					"\"$(SRCROOT)/$(TARGET_NAME)\"",
 				);
 				OTHER_LDFLAGS = (
