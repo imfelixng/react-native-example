@@ -1,0 +1,5 @@
+rootProject.name = 'TensorflowExample'
+include ':tflite-react-native'
+project(':tflite-react-native').projectDir = new File(rootProject.projectDir, '../node_modules/tflite-react-native/android')
+
+include ':app'

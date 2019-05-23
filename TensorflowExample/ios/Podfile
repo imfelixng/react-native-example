@@ -1,0 +1,29 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'TensorflowExample' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for TensorflowExample
+  pod 'TensorFlowLite', '1.12.0'
+  
+  target 'TensorflowExampleTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
+
+target 'TensorflowExample-tvOS' do
+  # Uncomment the next line if you're using Swift or would like to use dynamic frameworks
+  # use_frameworks!
+
+  # Pods for TensorflowExample-tvOS
+
+  target 'TensorflowExample-tvOSTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end
