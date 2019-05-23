@@ -59,7 +59,7 @@ const App = () => {
 
   const unitId =
     Platform.OS === "ios"
-      ? "ca-app-pub-3940256099942544/2934735716"
+      ? "ca-app-pub-6590896323514966/1203259789"
       : "ca-app-pub-3940256099942544/6300978111";
 
   React.useEffect(() => {
