@@ -16,6 +16,7 @@
 		01C86634DC11DBBC860B3F16 /* libPods-TensorflowExample-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CE12091B6138E397619EBA0 /* libPods-TensorflowExample-tvOS.a */; };
 		1192E2222296EF0700022999 /* models in Resources */ = {isa = PBXBuildFile; fileRef = 1192E2212296EF0600022999 /* models */; };
 		11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 5E9157331DD0AC6500FF2AA8 /* libRCTAnimation.a */; };
+		11E2797C229712E400A39326 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11E27978229710D600A39326 /* libRNImagePicker.a */; };
 		133E29F31AD74F7200F7D852 /* libRCTLinking.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 78C398B91ACF4ADC00677621 /* libRCTLinking.a */; };
 		139105C61AF99C1200B5F7CC /* libRCTSettings.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139105C11AF99BAD00B5F7CC /* libRCTSettings.a */; };
 		139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 139FDEF41B06529B00C62182 /* libRCTWebSocket.a */; };
@@ -125,6 +126,13 @@
 			proxyType = 2;
 			remoteGlobalIDString = 134814201AA4EA6300B7C361;
 			remoteInfo = TfliteReactNative;
+		};
+		11E27977229710D600A39326 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 11E2794E229710D500A39326 /* RNImagePicker.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 014A3B5C1C6CF33500B6D375;
+			remoteInfo = RNImagePicker;
 		};
 		139105C01AF99BAD00B5F7CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -343,6 +351,7 @@
 		00E356F21AD99517003FC87E /* TensorflowExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TensorflowExampleTests.m; sourceTree = "<group>"; };
 		1097BD36893928C49B37B704 /* libPods-TensorflowExample-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-TensorflowExample-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1192E2212296EF0600022999 /* models */ = {isa = PBXFileReference; lastKnownFileType = folder; name = models; path = ../models; sourceTree = "<group>"; };
+		11E2794E229710D500A39326 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
 		139105B61AF99BAD00B5F7CC /* RCTSettings.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTSettings.xcodeproj; path = "../node_modules/react-native/Libraries/Settings/RCTSettings.xcodeproj"; sourceTree = "<group>"; };
 		139FDEE61B06529A00C62182 /* RCTWebSocket.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTWebSocket.xcodeproj; path = "../node_modules/react-native/Libraries/WebSocket/RCTWebSocket.xcodeproj"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* TensorflowExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TensorflowExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -406,6 +415,7 @@
 				139FDEF61B0652A700C62182 /* libRCTWebSocket.a in Frameworks */,
 				FCF0CA147F5EDB661B935EF3 /* libPods-TensorflowExample.a in Frameworks */,
 				1624102902C24BA0ABA89368 /* libTfliteReactNative.a in Frameworks */,
+				11E2797C229712E400A39326 /* libRNImagePicker.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -509,6 +519,14 @@
 			isa = PBXGroup;
 			children = (
 				1192E2202296EE1000022999 /* libTfliteReactNative.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		11E2794F229710D500A39326 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				11E27978229710D600A39326 /* libRNImagePicker.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -649,6 +667,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				11E2794E229710D500A39326 /* RNImagePicker.xcodeproj */,
 				1192E2212296EF0600022999 /* models */,
 				13B07FAE1A68108700A75B9A /* TensorflowExample */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -848,6 +867,10 @@
 					ProjectRef = 146833FF1AC3E56700842450 /* React.xcodeproj */;
 				},
 				{
+					ProductGroup = 11E2794F229710D500A39326 /* Products */;
+					ProjectRef = 11E2794E229710D500A39326 /* RNImagePicker.xcodeproj */;
+				},
+				{
 					ProductGroup = 1192E21C2296EE1000022999 /* Products */;
 					ProjectRef = 472819A08DF94FEE801A5225 /* TfliteReactNative.xcodeproj */;
 				},
@@ -931,6 +954,13 @@
 			fileType = archive.ar;
 			path = libTfliteReactNative.a;
 			remoteRef = 1192E21F2296EE1000022999 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		11E27978229710D600A39326 /* libRNImagePicker.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRNImagePicker.a;
+			remoteRef = 11E27977229710D600A39326 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		139105C11AF99BAD00B5F7CC /* libRCTSettings.a */ = {
@@ -1179,7 +1209,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
 		2D02E4CB1E0B4B27006451C7 /* Bundle React Native Code And Images */ = {
 			isa = PBXShellScriptBuildPhase;

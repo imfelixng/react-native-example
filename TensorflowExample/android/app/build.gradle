@@ -135,9 +135,14 @@ android {
             }
         }
     }
+
+    aaptOptions {
+        noCompress 'tflite'
+    }
 }
 
 dependencies {
+    implementation project(':react-native-image-picker')
     implementation project(':tflite-react-native')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"

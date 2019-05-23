@@ -8,6 +8,8 @@ target 'TensorflowExample' do
   # Pods for TensorflowExample
   pod 'TensorFlowLite', '1.12.0'
   
+  pod 'react-native-image-picker', :path => '../node_modules/react-native-image-picker'
+
   target 'TensorflowExampleTests' do
     inherit! :search_paths
     # Pods for testing
