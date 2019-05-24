@@ -14,6 +14,13 @@ import RNMomosdk from "react-native-momosdk";
 const RNMomosdkModule = NativeModules.RNMomosdk;
 const EventEmitter = new NativeEventEmitter(RNMomosdkModule);
 
+import stripe from 'tipsi-stripe';
+
+stripe.setOptions({
+  publishableKey: 'pk_test_5GQiqPEad7kBv0pjX8QyWISZ',
+  androidPayMode: 'test', // Android only
+})
+
 const momoInfo = {
   merchantname: "Didauday Shop",
   merchantcode: "DDD01",
@@ -86,6 +93,18 @@ const App = () => {
     }
   };
   
+  const onPressStripe = () => {
+    return stripe
+      .paymentRequestWithCardForm()
+      .then(stripeTokenInfo => {
+        alert(stripeTokenInfo);
+        console.warn('Token created', { stripeTokenInfo });
+      })
+      .catch(error => {
+        console.warn('Payment failed', { error });
+      });
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.appName}>Payment App</Text>
@@ -93,7 +112,7 @@ const App = () => {
         <TouchableHighlight style={styles.button} onPress={onPressMomo}>
           <Text>Momo</Text>
         </TouchableHighlight>
-        <TouchableHighlight style={styles.button}>
+        <TouchableHighlight style={styles.button} onPress = { onPressStripe }>
           <Text>Paypal</Text>
         </TouchableHighlight>
         <TouchableHighlight style={styles.button}>

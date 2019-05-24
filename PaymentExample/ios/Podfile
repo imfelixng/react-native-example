@@ -7,9 +7,10 @@ target 'PaymentExample' do
 
   # Pods for PaymentExample
   pod 'Braintree'
+  pod 'Stripe', '~> 14.0.0'
+  # pod 'react-native-webview', :path => '../node_modules/react-native-webview'
 
-
-  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+  pod 'tipsi-stripe', :path => '../node_modules/tipsi-stripe'
 
   target 'PaymentExampleTests' do
     inherit! :search_paths

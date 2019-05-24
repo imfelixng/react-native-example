@@ -3,6 +3,7 @@ package com.paymentexample;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.gettipsi.stripe.StripeReactPackage;
 import com.reactlibrary.RNMomosdkPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.smarkets.paypal.RNPaypalPackage;
@@ -26,6 +27,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new StripeReactPackage(),
             new RNMomosdkPackage(),
             new RNCWebViewPackage(),
             new RNPaypalPackage()

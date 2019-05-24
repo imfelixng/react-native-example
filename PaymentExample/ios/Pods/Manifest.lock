@@ -21,17 +21,21 @@ PODS:
   - Braintree/UI (4.23.0):
     - Braintree/Card
     - Braintree/Core
+  - Stripe (14.0.0)
 
 DEPENDENCIES:
   - Braintree
+  - Stripe (~> 14.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Braintree
+    - Stripe
 
 SPEC CHECKSUMS:
   Braintree: b5841b9b1c1dadc86959db3e29d36099b67f91bf
+  Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
 
-PODFILE CHECKSUM: 316a5452d0fc450f9f05c75174652cd75bab0819
+PODFILE CHECKSUM: 1bd132371301707aa22db6c95ae630e28e013114
 
 COCOAPODS: 1.6.2
