@@ -5,7 +5,6 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.gettipsi.stripe.StripeReactPackage;
 import com.reactlibrary.RNMomosdkPackage;
-import com.reactnativecommunity.webview.RNCWebViewPackage;
 import com.smarkets.paypal.RNPaypalPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -29,7 +28,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new StripeReactPackage(),
             new RNMomosdkPackage(),
-            new RNCWebViewPackage(),
             new RNPaypalPackage()
       );
     }
