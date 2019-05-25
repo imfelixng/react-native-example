@@ -1,16 +1,52 @@
 PODS:
+  - Braintree/Card (4.23.0):
+    - Braintree/Core
+  - Braintree/Core (4.23.0)
+  - Braintree/PaymentFlow (4.23.0):
+    - Braintree/Card
+    - Braintree/Core
+    - Braintree/PayPalOneTouch
+  - Braintree/PayPalDataCollector (4.23.0):
+    - Braintree/Core
+    - Braintree/PayPalUtils
+  - Braintree/PayPalOneTouch (4.23.0):
+    - Braintree/Core
+    - Braintree/PayPalDataCollector
+    - Braintree/PayPalUtils
+  - Braintree/PayPalUtils (4.23.0)
+  - Braintree/UnionPay (4.23.0):
+    - Braintree/Card
+    - Braintree/Core
+  - BraintreeDropIn (6.5.0):
+    - BraintreeDropIn/DropIn (= 6.5.0)
+  - BraintreeDropIn/DropIn (6.5.0):
+    - Braintree/Card (~> 4.17)
+    - Braintree/Core (~> 4.17)
+    - Braintree/PaymentFlow (~> 4.17)
+    - Braintree/UnionPay (~> 4.17)
+    - BraintreeDropIn/UIKit
+  - BraintreeDropIn/UIKit (6.5.0)
+  - CardIO (5.4.1)
   - Stripe (14.0.0)
 
 DEPENDENCIES:
+  - BraintreeDropIn (~> 6.0)
+  - CardIO
   - Stripe (~> 14.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Braintree
+    - BraintreeDropIn
+    - CardIO
     - Stripe
 
 SPEC CHECKSUMS:
+  Braintree: b5841b9b1c1dadc86959db3e29d36099b67f91bf
+  BraintreeDropIn: e141f6c1b49f0e3dd68ca00ccf6bb3031cc5e164
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   Stripe: db29ad197c74aca6fb981e4e8355cf7ebd0fca5a
 
-PODFILE CHECKSUM: 6c4b33be5fb7c06f94fdfafca1de8d9c666b4327
+PODFILE CHECKSUM: 32d9a99494284936cb4ff80648add6a3b2645b0a
 
 COCOAPODS: 1.6.2

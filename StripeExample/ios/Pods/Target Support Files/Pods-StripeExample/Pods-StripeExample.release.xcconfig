@@ -1,7 +1,7 @@
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Stripe"
-LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Stripe"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"Stripe" -framework "Contacts" -framework "CoreLocation" -framework "Foundation" -framework "PassKit" -framework "Security" -framework "WebKit"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/Braintree" "${PODS_ROOT}/Headers/Public/BraintreeDropIn" "${PODS_ROOT}/Headers/Public/CardIO" "${PODS_ROOT}/Headers/Public/Stripe"
+LIBRARY_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Braintree" "${PODS_CONFIGURATION_BUILD_DIR}/BraintreeDropIn" "${PODS_CONFIGURATION_BUILD_DIR}/Stripe" "${PODS_ROOT}/Braintree/BraintreePayPal/PayPalDataCollector/Risk" "${PODS_ROOT}/CardIO/CardIO"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"Braintree" -l"BraintreeDropIn" -l"CardIO" -l"PPRiskMagnesOC" -l"Stripe" -l"c++" -l"opencv_core" -l"opencv_imgproc" -framework "AVFoundation" -framework "Accelerate" -framework "AddressBook" -framework "AudioToolbox" -framework "Contacts" -framework "CoreLocation" -framework "CoreMedia" -framework "CoreVideo" -framework "Foundation" -framework "MessageUI" -framework "MobileCoreServices" -framework "OpenGLES" -framework "PassKit" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration" -framework "UIKit" -framework "WebKit" -weak_framework "Contacts" -weak_framework "SafariServices"
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_PODFILE_DIR_PATH = ${SRCROOT}/.

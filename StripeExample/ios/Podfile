@@ -3,5 +3,7 @@
 
 target 'StripeExample' do
   pod 'Stripe', '~> 14.0.0'
+  pod 'BraintreeDropIn', '~> 6.0'
+  pod 'CardIO'
   inherit! :search_paths
 end

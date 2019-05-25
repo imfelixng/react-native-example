@@ -11,10 +11,15 @@
 #import <React/RCTBundleURLProvider.h>
 #import <React/RCTRootView.h>
 
+#import "RCTLinkingManager.h"
+
+#import "BraintreeCore.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+  [BTAppSwitch setReturnURLScheme:self.paymentsURLScheme];
   RCTBridge *bridge = [[RCTBridge alloc] initWithDelegate:self launchOptions:launchOptions];
   RCTRootView *rootView = [[RCTRootView alloc] initWithBridge:bridge
                                                    moduleName:@"StripeExample"
@@ -37,6 +42,22 @@
 #else
   return [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
 #endif
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+            options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
+  
+  if ([url.scheme localizedCaseInsensitiveCompare:self.paymentsURLScheme] == NSOrderedSame) {
+    return [BTAppSwitch handleOpenURL:url options:options];
+  }
+  
+  return [RCTLinkingManager application:application openURL:url options:options];
+}
+
+- (NSString *)paymentsURLScheme {
+  NSString *bundleIdentifier = [[NSBundle mainBundle] bundleIdentifier];
+  return [NSString stringWithFormat:@"%@.%@", bundleIdentifier, @"payments"];
 }
 
 @end
