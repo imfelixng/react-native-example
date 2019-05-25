@@ -1,8 +1,20 @@
 import React from "react";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  DeviceEventEmitter,
+  NativeModules,
+  NativeEventEmitter
+} from "react-native";
 
 import stripe from "tipsi-stripe";
-import BraintreeDropIn from 'react-native-braintree-payments-drop-in';
+import BraintreeDropIn from "react-native-braintree-payments-drop-in";
+
+import RNMomosdk from "react-native-momosdk";
+const RNMomosdkModule = NativeModules.RNMomosdk;
 
 stripe.setOptions({
   publishableKey: "pk_test_5GQiqPEad7kBv0pjX8QyWISZ",
@@ -10,20 +22,55 @@ stripe.setOptions({
   merchantId: "MERCHANT_ID" // Omit this line in sandbox; insert your Google merchant ID in production
 });
 
+const EventEmitter = new NativeEventEmitter(RNMomosdkModule);
+
+const momoInfo = {
+  merchantname: "NQA Shop",
+  merchantcode: "NQA",
+  merchantNameLabel: "Nhà cung cấp",
+  billdescription: "Iphone 8",
+  amount: 50000,
+  enviroment: "0"
+};
+
 const App = () => {
+  React.useEffect(() => {
+    EventEmitter.addListener(
+      "RCTMoMoNoficationCenterRequestTokenReceived",
+      response => {
+        try {
+          console.log("<MoMoPay>Listen.Event::" + JSON.stringify(response));
+          if (response && response.status == 0) {
+            let fromapp = response.fromapp;
+            let momoToken = response.data;
+            let phonenumber = response.phonenumber;
+            let message = response.message;
+            let orderId = response.refOrderId;
+            alert(message);
+          } else {
+            let message = response.message;
+            alert(message);
+          }
+        } catch (ex) {
+          console.log(ex);
+        }
+      }
+    );
+  }, []);
 
   const onPressPayPal = () => {
     BraintreeDropIn.show({
-      clientToken: 'eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpGVXpJMU5pSXNJbXRwWkNJNklqSXdNVGd3TkRJMk1UWXRjMkZ1WkdKdmVDSjkuZXlKbGVIQWlPakUxTlRnNE9URXlPRGtzSW1wMGFTSTZJalU1WWpFNE9UVmtMVEE0TkRBdE5ERTVaUzA0TnpSaExXTXlaREF4TVdNMU1XTTBOeUlzSW5OMVlpSTZJbVpvTkhkdU9EWjNkMlJ1TkRoa2EyNGlMQ0pwYzNNaU9pSkJkWFJvZVNJc0ltMWxjbU5vWVc1MElqcDdJbkIxWW14cFkxOXBaQ0k2SW1ab05IZHVPRFozZDJSdU5EaGthMjRpTENKMlpYSnBabmxmWTJGeVpGOWllVjlrWldaaGRXeDBJanBtWVd4elpYMHNJbkpwWjJoMGN5STZXeUp0WVc1aFoyVmZkbUYxYkhRaVhTd2liM0IwYVc5dWN5STZlMzE5LmNuZ252WlFldGxYWUc5bnlLVWdhTFc4bTZ1eTFkVzU3VWEtVFJ0QVJ5UDVRYWNYazFQam5KSzdUb1otWTQ5ZElQdVZzZ3Y2Ri1nVmdxQ2tGMDctOE5BIiwiY29uZmlnVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2ZoNHduODZ3d2RuNDhka24vY2xpZW50X2FwaS92MS9jb25maWd1cmF0aW9uIiwiZ3JhcGhRTCI6eyJ1cmwiOiJodHRwczovL3BheW1lbnRzLnNhbmRib3guYnJhaW50cmVlLWFwaS5jb20vZ3JhcGhxbCIsImRhdGUiOiIyMDE4LTA1LTA4In0sImNoYWxsZW5nZXMiOltdLCJlbnZpcm9ubWVudCI6InNhbmRib3giLCJjbGllbnRBcGlVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZmg0d244Nnd3ZG40OGRrbi9jbGllbnRfYXBpIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhdXRoVXJsIjoiaHR0cHM6Ly9hdXRoLnZlbm1vLnNhbmRib3guYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhbmFseXRpY3MiOnsidXJsIjoiaHR0cHM6Ly9vcmlnaW4tYW5hbHl0aWNzLXNhbmQuc2FuZGJveC5icmFpbnRyZWUtYXBpLmNvbS9maDR3bjg2d3dkbjQ4ZGtuIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInBheXBhbEVuYWJsZWQiOnRydWUsInBheXBhbCI6eyJkaXNwbGF5TmFtZSI6Ik5vbmUiLCJjbGllbnRJZCI6IkFUa0wtZlQwVnZzcVhiYzNOTFNTeDZCckN1emxqWDhRWGxQWnhDNTg3cUs3bTc4QWJNTXFoN3JSNndRcDNuMmZrS2tUNGFTc2tmMG42QlpMIiwicHJpdmFjeVVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS9wcCIsInVzZXJBZ3JlZW1lbnRVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vdG9zIiwiYmFzZVVybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9jaGVja291dC5wYXlwYWwuY29tIiwiZGlyZWN0QmFzZVVybCI6bnVsbCwiYWxsb3dIdHRwIjp0cnVlLCJlbnZpcm9ubWVudE5vTmV0d29yayI6ZmFsc2UsImVudmlyb25tZW50Ijoib2ZmbGluZSIsInVudmV0dGVkTWVyY2hhbnQiOmZhbHNlLCJicmFpbnRyZWVDbGllbnRJZCI6Im1hc3RlcmNsaWVudDMiLCJiaWxsaW5nQWdyZWVtZW50c0VuYWJsZWQiOnRydWUsIm1lcmNoYW50QWNjb3VudElkIjoibm9uZSIsImN1cnJlbmN5SXNvQ29kZSI6IlVTRCJ9LCJtZXJjaGFudElkIjoiZmg0d244Nnd3ZG40OGRrbiIsInZlbm1vIjoib2ZmIn0=',
+      clientToken:
+        "eyJ2ZXJzaW9uIjoyLCJhdXRob3JpemF0aW9uRmluZ2VycHJpbnQiOiJleUowZVhBaU9pSktWMVFpTENKaGJHY2lPaUpGVXpJMU5pSXNJbXRwWkNJNklqSXdNVGd3TkRJMk1UWXRjMkZ1WkdKdmVDSjkuZXlKbGVIQWlPakUxTlRnNE9URXlPRGtzSW1wMGFTSTZJalU1WWpFNE9UVmtMVEE0TkRBdE5ERTVaUzA0TnpSaExXTXlaREF4TVdNMU1XTTBOeUlzSW5OMVlpSTZJbVpvTkhkdU9EWjNkMlJ1TkRoa2EyNGlMQ0pwYzNNaU9pSkJkWFJvZVNJc0ltMWxjbU5vWVc1MElqcDdJbkIxWW14cFkxOXBaQ0k2SW1ab05IZHVPRFozZDJSdU5EaGthMjRpTENKMlpYSnBabmxmWTJGeVpGOWllVjlrWldaaGRXeDBJanBtWVd4elpYMHNJbkpwWjJoMGN5STZXeUp0WVc1aFoyVmZkbUYxYkhRaVhTd2liM0IwYVc5dWN5STZlMzE5LmNuZ252WlFldGxYWUc5bnlLVWdhTFc4bTZ1eTFkVzU3VWEtVFJ0QVJ5UDVRYWNYazFQam5KSzdUb1otWTQ5ZElQdVZzZ3Y2Ri1nVmdxQ2tGMDctOE5BIiwiY29uZmlnVXJsIjoiaHR0cHM6Ly9hcGkuc2FuZGJveC5icmFpbnRyZWVnYXRld2F5LmNvbTo0NDMvbWVyY2hhbnRzL2ZoNHduODZ3d2RuNDhka24vY2xpZW50X2FwaS92MS9jb25maWd1cmF0aW9uIiwiZ3JhcGhRTCI6eyJ1cmwiOiJodHRwczovL3BheW1lbnRzLnNhbmRib3guYnJhaW50cmVlLWFwaS5jb20vZ3JhcGhxbCIsImRhdGUiOiIyMDE4LTA1LTA4In0sImNoYWxsZW5nZXMiOltdLCJlbnZpcm9ubWVudCI6InNhbmRib3giLCJjbGllbnRBcGlVcmwiOiJodHRwczovL2FwaS5zYW5kYm94LmJyYWludHJlZWdhdGV3YXkuY29tOjQ0My9tZXJjaGFudHMvZmg0d244Nnd3ZG40OGRrbi9jbGllbnRfYXBpIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9hc3NldHMuYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhdXRoVXJsIjoiaHR0cHM6Ly9hdXRoLnZlbm1vLnNhbmRib3guYnJhaW50cmVlZ2F0ZXdheS5jb20iLCJhbmFseXRpY3MiOnsidXJsIjoiaHR0cHM6Ly9vcmlnaW4tYW5hbHl0aWNzLXNhbmQuc2FuZGJveC5icmFpbnRyZWUtYXBpLmNvbS9maDR3bjg2d3dkbjQ4ZGtuIn0sInRocmVlRFNlY3VyZUVuYWJsZWQiOnRydWUsInBheXBhbEVuYWJsZWQiOnRydWUsInBheXBhbCI6eyJkaXNwbGF5TmFtZSI6Ik5vbmUiLCJjbGllbnRJZCI6IkFUa0wtZlQwVnZzcVhiYzNOTFNTeDZCckN1emxqWDhRWGxQWnhDNTg3cUs3bTc4QWJNTXFoN3JSNndRcDNuMmZrS2tUNGFTc2tmMG42QlpMIiwicHJpdmFjeVVybCI6Imh0dHA6Ly9leGFtcGxlLmNvbS9wcCIsInVzZXJBZ3JlZW1lbnRVcmwiOiJodHRwOi8vZXhhbXBsZS5jb20vdG9zIiwiYmFzZVVybCI6Imh0dHBzOi8vYXNzZXRzLmJyYWludHJlZWdhdGV3YXkuY29tIiwiYXNzZXRzVXJsIjoiaHR0cHM6Ly9jaGVja291dC5wYXlwYWwuY29tIiwiZGlyZWN0QmFzZVVybCI6bnVsbCwiYWxsb3dIdHRwIjp0cnVlLCJlbnZpcm9ubWVudE5vTmV0d29yayI6ZmFsc2UsImVudmlyb25tZW50Ijoib2ZmbGluZSIsInVudmV0dGVkTWVyY2hhbnQiOmZhbHNlLCJicmFpbnRyZWVDbGllbnRJZCI6Im1hc3RlcmNsaWVudDMiLCJiaWxsaW5nQWdyZWVtZW50c0VuYWJsZWQiOnRydWUsIm1lcmNoYW50QWNjb3VudElkIjoibm9uZSIsImN1cnJlbmN5SXNvQ29kZSI6IlVTRCJ9LCJtZXJjaGFudElkIjoiZmg0d244Nnd3ZG40OGRrbiIsInZlbm1vIjoib2ZmIn0="
     })
-    .then(result => {
-      console.log(result)
-      alert(result)
-    })
-    .catch((error) => {
-      console.log(error);
-    });
-  }
+      .then(result => {
+        console.log(result);
+        alert(result);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
   const onPressStripe = async () => {
     const token = await stripe.paymentRequestWithCardForm({
       // Only iOS support this options
@@ -54,7 +101,7 @@ const App = () => {
       console.log(error);
       allowed = null;
     }
-    
+
     if (allowed) {
       const token = await stripe.paymentRequestWithNativePay({
         total_price: "80.00",
@@ -80,7 +127,6 @@ const App = () => {
         ]
       });
       console.log(token);
-      
     } else {
       alert("Your phone don't support Google Pay");
     }
@@ -94,7 +140,7 @@ const App = () => {
       console.log(error);
       allowed = null;
     }
-    console.log('support');
+    console.log("support");
     if (allowed) {
       const token = await stripe.paymentRequestWithNativePay(
         {
@@ -122,12 +168,50 @@ const App = () => {
           }
         ]
       );
-      stripe.completeApplePayRequest()
+      stripe.completeApplePayRequest();
       console.log(token);
     } else {
-      alert('Your phone dont support Apple Pay')
+      alert("Your phone dont support Apple Pay");
     }
   };
+
+  const onPressMomo = async () => {
+    let jsonData = {};
+    jsonData.enviroment = momoInfo.enviroment; //SANBOX OR PRODUCTION
+    jsonData.action = "gettoken"; //DO NOT EDIT
+    jsonData.merchantname = momoInfo.merchantname; //edit your merchantname here
+    jsonData.merchantcode = momoInfo.merchantcode; //edit your merchantcode here
+    jsonData.merchantnamelabel = momoInfo.merchantNameLabel;
+    jsonData.description = momoInfo.billdescription;
+    jsonData.amount = 5000;//order total amount
+    jsonData.orderId = "ID20181123192300";
+    jsonData.orderLabel = "Ma don hang";
+    jsonData.appScheme = "momocgv20170101";// iOS App Only , match with Schemes Indentify from your  Info.plist > key URL types > URL Schemes
+    console.log("data_request_payment " + JSON.stringify(jsonData));
+    if (Platform.OS === 'android'){
+      let dataPayment = await RNMomosdk.requestPayment(jsonData);
+      momoHandleResponse(dataPayment);
+    }else{
+      RNMomosdk.requestPayment(jsonData);
+    }
+  };
+
+  const momoHandleResponse = async (response) => {
+    try{
+      if (response && response.status === 0) {
+        let fromapp = response.fromapp;
+        let momoToken = response.data;
+        let phonenumber = response.phonenumber;
+        let message = response.message;
+        alert(message)
+      } else {
+        let message = response.message;
+        alert(message)
+      }
+    }catch(ex){
+      console.log(ex);
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -142,6 +226,9 @@ const App = () => {
       </TouchableOpacity>
       <TouchableOpacity style={styles.button} onPress={onPressAPay}>
         <Text>Pay with APay</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.button} onPress={onPressMomo}>
+        <Text>Pay with Momo</Text>
       </TouchableOpacity>
     </View>
   );

@@ -15,6 +15,8 @@
 
 #import "BraintreeCore.h"
 
+#import "RNMomosdk.h"
+
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -47,7 +49,7 @@
 - (BOOL)application:(UIApplication *)application
             openURL:(NSURL *)url
             options:(NSDictionary<UIApplicationOpenURLOptionsKey,id> *)options {
-  
+  [RNMomosdk handleOpenUrl:url];
   if ([url.scheme localizedCaseInsensitiveCompare:self.paymentsURLScheme] == NSOrderedSame) {
     return [BTAppSwitch handleOpenURL:url options:options];
   }

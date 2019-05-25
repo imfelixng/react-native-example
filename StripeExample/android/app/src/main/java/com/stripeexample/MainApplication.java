@@ -3,6 +3,7 @@ package com.stripeexample;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.reactlibrary.RNMomosdkPackage;
 import tech.bam.RNBraintreeDropIn.RNBraintreeDropInPackage;
 import com.gettipsi.stripe.StripeReactPackage;
 import com.facebook.react.ReactNativeHost;
@@ -25,6 +26,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
+            new RNMomosdkPackage(),
             new RNBraintreeDropInPackage(),
             new StripeReactPackage()
       );
