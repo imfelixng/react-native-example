@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "react": "16.8.3",
-    "react-native": "0.59.8",
+    "react-native": "0.62.3",
     "react-native-braintree-payments-drop-in": "^1.0.4",
     "react-native-momosdk": "^1.2.6",
     "tipsi-stripe": "^7.5.0"
